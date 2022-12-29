@@ -6,6 +6,8 @@ const Home = () => {
     return (
         <section>
             <Timeline />
+            <Timeline />
+            <Timeline />
         </section>
     )
 };

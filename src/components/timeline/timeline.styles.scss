@@ -1,0 +1,27 @@
+$dark-blue: rgba(29, 45, 61, 1);
+$primary-blue: rgba(41, 56, 71, 1);
+$yellow: rgba(227, 152, 0, 1);
+$white: white;
+
+
+.timeline-container {
+    margin: 0 auto;
+    width: 70%;
+    color: $white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr;
+
+    h3 {
+        align-self: center;
+    }
+
+
+    .horizontal-line {
+        width: .5vw;
+        height: 100%;
+        background-color: $dark-blue;
+    }
+    .state {
+        margin-bottom: 5vw;
+    }
+}
