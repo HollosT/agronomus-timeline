@@ -1,9 +1,12 @@
+import Timeline from "../../components/timeline/timeline.component";
 
 
 const Home = () => {
 
     return (
-        <h1>Home</h1>
+        <section>
+            <Timeline />
+        </section>
     )
 };
 

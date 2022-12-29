@@ -1,6 +1,10 @@
 
 import { useState } from 'react';
 import { signInAuthUserWithEmailAndPassword } from '../../../utils/firebase/firebase.utils'
+import FormInput from '../../UI/form-input/form-input.component';
+import Button from '../../UI/button/button.component'
+
+import './sign-in.component.scss'
 
 const defaultFormFields = {
     email: "",
@@ -46,11 +50,16 @@ const SignIn = () => {
     }
 
     return (
-            <form onSubmit={handleSubmit}>
-                <input type="email" name="email" required onChange={handleChange}/>
-                <input type="password" name="password" required onChange={handleChange}/>
-                <button type="submit">Sign In</button>
-            </form>
+          <div>
+              <h2>Already have an account</h2>
+              <span>Sign in with your email and password</span>
+              
+              <form onSubmit={handleSubmit} className="form-container">
+                <FormInput label="Email address" type="email" name="email" required onChange={handleChange} value={email}/>
+                <FormInput label="Password" type="password" name="password" required onChange={handleChange} value={password}/>
+                <Button type="submit">Sign In</Button>
+              </form>
+          </div>
     )
 };
 

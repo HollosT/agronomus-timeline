@@ -1,3 +1,8 @@
+$dark-blue: rgba(29, 45, 61, 1);
+$primary-blue: rgba(41, 56, 71, 1);
+$yellow: rgba(227, 152, 0, 1);
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +10,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $primary-blue;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
 }
 
 code {

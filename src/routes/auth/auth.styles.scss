@@ -1,8 +1,6 @@
-.auth-caption {
-
-    span {
-        text-decoration: underline;
-        cursor: pointer;
-        font-weight: 500;
-    }
+.authentication-container {
+    display: flex;
+    justify-content: space-between;
+    width: 900px;
+    margin: 30px auto;
 }

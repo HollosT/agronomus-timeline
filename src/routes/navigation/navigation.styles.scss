@@ -1,5 +1,21 @@
+$dark-blue: rgba(29, 45, 61, 1);
+$primary-blue: rgba(41, 56, 71, 1);
+$yellow: rgba(227, 152, 0, 1);
+
 .main-navigation {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 1vw 3vw;
+    background-color: $dark-blue;
+
+    a {
+        color: $yellow;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+    }
+    span {
+        color: $yellow;
+    }
 }
