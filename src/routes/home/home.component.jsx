@@ -9,15 +9,15 @@ const DUMMY_VERSIONS = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         contents: [
             {
-                type: 'New',
+                type: 'new',
                 list: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do']
             },
             {
-                type: 'Updates',
+                type: 'updates',
                 list: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ']
             },
             {
-                type: 'Error fix',
+                type: 'error',
                 list: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ']
             }
         ]
@@ -30,15 +30,15 @@ const DUMMY_VERSIONS = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         contents: [
             {
-                type: 'New',
+                type: 'new',
                 list: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do']
             },
             {
-                type: 'Updates',
+                type: 'updates',
                 list: undefined,
             },
             {
-                type: 'Error fix',
+                type: 'error',
                 list: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ' , 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ']
             }
         ]
@@ -51,15 +51,15 @@ const DUMMY_VERSIONS = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         contents: [
             {
-                type: 'New',
+                type: 'new',
                 list: undefined
             },
             {
-                type: 'Updates',
+                type: 'updates',
                 list: undefined,
             },
             {
-                type: 'Error fix',
+                type: 'error',
                 list: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ' , 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ']
             }
         ]

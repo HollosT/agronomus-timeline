@@ -1,4 +1,10 @@
 .form-container {
     width: 380px;
     margin: 0 auto;
+
+
+    .main-state-container {
+        display: grid;
+        // grid-template-columns: 1fr 1fr 1fr;
+    }
 }
