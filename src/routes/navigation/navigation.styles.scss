@@ -18,4 +18,15 @@ $yellow: rgba(227, 152, 0, 1);
     span {
         color: $yellow;
     }
+
+    div {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 5vw;
+
+        a {
+            font-weight: 400;
+        }
+    }
 }

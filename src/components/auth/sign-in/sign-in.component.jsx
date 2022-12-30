@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { signInAuthUserWithEmailAndPassword } from '../../../utils/firebase/firebase.utils'
 import FormInput from '../../UI/form-input/form-input.component';
 import Button from '../../UI/button/button.component'
+import { useNavigate } from "react-router-dom";
+
 
 import './sign-in.component.scss'
 
@@ -12,11 +14,13 @@ const defaultFormFields = {
 };
 
 const SignIn = () => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState(defaultFormFields); 
     const { email, password } = formData;
 
     const resetFormFields = () => {
         setFormData(defaultFormFields);
+        navigate('/')
       };
 
     const handleChange = (event) => {
@@ -31,7 +35,7 @@ const SignIn = () => {
         event.preventDefault()
         
         try {
-            const {user} = await signInAuthUserWithEmailAndPassword(email, password)
+             await signInAuthUserWithEmailAndPassword(email, password)
             
             resetFormFields();
         } catch (error) {

@@ -17,7 +17,10 @@ const Navigation = () => {
             <Logo />
             <h5>Agronomus</h5>
         </Link>
-        {currentUser ? (<span onClick={signOutUser}>Logout</span>) : (<Link to="/auth">Sign in</Link>)}
+        <div>
+          {currentUser ? (<Link to="/add-new">Add version</Link>) : null}
+          {currentUser ? (<span onClick={signOutUser}>Logout</span>) : (<Link to="/auth">Sign in</Link>)}
+        </div>
       </nav>
       <Outlet />
     </Fragment>
