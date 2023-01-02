@@ -12,13 +12,21 @@ const defaultFormFields = {
     description: ""
 };
 
+const contents = {
+    new: [],
+    update: [],
+    error: []
+}
+
+
 
 
 
 const AddNew = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
+    const [content, setContent] = useState(contents);
 
-    const {versionNumber, title, date, description} = formFields
+    const {versionNumber, title, date, description} = formFields;
 
     const changeHandler = (event) => {
         const {name, value} = event.target;
@@ -28,11 +36,21 @@ const AddNew = () => {
         })
     } 
 
+    const inputListHandler = (input, name) => {
+        setContent(prev => {
+            const prevArr = prev[name].push(input)
+           
+            return {...prev, name: prevArr}
+        })
+
+        console.log(content)
+    }
+
   
 
     const handleSubmit = (event) => {
-        
-        
+        event.preventDefault();
+        console.log({...formFields, ...content})
 
         
     }
@@ -47,15 +65,15 @@ const AddNew = () => {
             <div className="main-state-container">
                 <div className="new-container">
                     <h5>What is new?</h5>
-                    <Lists state="new" />
+                    <Lists state="new" onInputHandler={inputListHandler} />
                 </div>
                 <div className="new-container">
                     <h5>What was updated?</h5>
-                    <Lists state="update" />
+                    <Lists state="update" onInputHandler={inputListHandler} />
                 </div>
                 <div className="new-container">
                     <h5>What is fixed?</h5>
-                    <Lists state="error" />
+                    <Lists state="error" onInputHandler={inputListHandler} />
                 </div>
 
             </div>

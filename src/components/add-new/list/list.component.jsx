@@ -8,15 +8,12 @@ let name;
 let count = 0;
 let defaultLists = [];
 
-const defaultContentFields = {
-    name: [],
-}
 
 
 
-const List = ({state}) => {
+
+const List = ({state, onInputHandler}) => {
     const [activeInput, setActiveInput] = useState('')
-    const [contentFields, setContentFields] = useState(defaultContentFields)
     const [lists, setLists] = useState(defaultLists)
     name= state
 
@@ -42,18 +39,15 @@ const List = ({state}) => {
     }
 
     const addItem = () => {
-        setContentFields(prevState => {
-            return{...prevState, [name]: activeInput}
-        })
-
-        console.log(activeInput)
-        console.log(contentFields)
+        onInputHandler(activeInput, name)
     }
 
 
     return (
         <div>
             <FormInput type="text" name={name} onChange={changeHandler}/>
+            <Button  type="button" onClick={addItem}> Add</Button>
+
             {lists.length > 0 ? lists.map(list => (
                 <div key={list} className="state-container">
                     <FormInput type="text" name={name} onChange={changeHandler}/>
