@@ -15,7 +15,7 @@ let defaultLists = [];
 
 const List = ({state, onInputHandler}) => {
     const listCtx = useContext(ListContext)
-    // const [activeInput, setActiveInput] = useState('')
+
     const [lists, setLists] = useState(defaultLists)
     name= state
 
@@ -35,14 +35,11 @@ const List = ({state, onInputHandler}) => {
     
     return (
         <div>
-            {/* <FormInput type="text" name={name} id={0} onChange={listCtx.addListItem} /> */}
             <textarea name={name} id={0} onChange={listCtx.addListItem} ></textarea>
-
 
             {lists.length > 0 ? lists.map((list, i) => (
                 <div key={i+1} className="state-container">
                     <textarea name={name} id={i+1} onChange={listCtx.addListItem} ></textarea>
-                    {/* <FormInput type="textarea" name={name} id={i+1} onChange={listCtx.addListItem} /> */}
                     <Button  type="button" onClick={removeList} id={list}> &times;</Button>
                 </div>
             )) : ''}
