@@ -1,7 +1,7 @@
 import { useState } from "react";
-import FormInput from "../UI/form-input/form-input.component";
-import Button from '../UI/button/button.component'
-import Lists from "./list/list.component";
+import FormInput from "../../UI/form-input/form-input.component";
+import Button from '../../UI/button/button.component'
+import Lists from "../list/list.component";
 
 import './add-new.styles.scss'
 
@@ -18,11 +18,7 @@ const contents = {
     error: []
 }
 
-
-
-
-
-const AddNew = () => {
+const AddNewContainer = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const [content, setContent] = useState(contents);
 
@@ -57,23 +53,25 @@ const AddNew = () => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <FormInput label="Version number" type="number" name="versionNumber" value={versionNumber} onChange={changeHandler}/>
-            <FormInput label="Title" type="text" name="title" value={title} onChange={changeHandler}/>
-            <FormInput label="Date" type="date" name="date" value={date} onChange={changeHandler}/>
-            <FormInput label="Description" type="richtext" name="description" value={description} onChange={changeHandler}/>
+            <div>
+                <FormInput label="Version number" type="number" name="versionNumber" value={versionNumber} onChange={changeHandler}/>
+                <FormInput label="Title" type="text" name="title" value={title} onChange={changeHandler}/>
+                <FormInput label="Date" type="date" name="date" value={date} onChange={changeHandler}/>
+                <FormInput label="Description" type="richtext" name="description" value={description} onChange={changeHandler}/>
+            </div>
 
             <div className="main-state-container">
                 <div className="new-container">
                     <h5>What is new?</h5>
-                    <Lists state="new" onInputHandler={inputListHandler} />
+                    <Lists state="news" onInputHandler={inputListHandler} />
                 </div>
                 <div className="new-container">
                     <h5>What was updated?</h5>
-                    <Lists state="update" onInputHandler={inputListHandler} />
+                    <Lists state="updates" onInputHandler={inputListHandler} />
                 </div>
                 <div className="new-container">
                     <h5>What is fixed?</h5>
-                    <Lists state="error" onInputHandler={inputListHandler} />
+                    <Lists state="errors" onInputHandler={inputListHandler} />
                 </div>
 
             </div>
@@ -82,4 +80,4 @@ const AddNew = () => {
     )
 }
 
-export default AddNew;
+export default AddNewContainer;

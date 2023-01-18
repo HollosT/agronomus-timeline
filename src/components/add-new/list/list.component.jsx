@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "../../UI/button/button.component"
 import FormInput from "../../UI/form-input/form-input.component"
+import {ListContext} from '../../../context/list/list.component'
 
 import './list.styles.scss'
 
@@ -13,7 +14,8 @@ let defaultLists = [];
 
 
 const List = ({state, onInputHandler}) => {
-    const [activeInput, setActiveInput] = useState('')
+    const listCtx = useContext(ListContext)
+    // const [activeInput, setActiveInput] = useState('')
     const [lists, setLists] = useState(defaultLists)
     name= state
 
@@ -23,7 +25,6 @@ const List = ({state, onInputHandler}) => {
             return [...prevList, newItem]
        })
        count++;
-       
     }
 
     const removeList = (event) => {
@@ -32,27 +33,17 @@ const List = ({state, onInputHandler}) => {
         })
     }
     
-    const changeHandler = (event) => {
-        setActiveInput(prev => {
-            return prev = event.target.value
-        })
-    }
-
-    const addItem = () => {
-        onInputHandler(activeInput, name)
-    }
-
-
     return (
         <div>
-            <FormInput type="text" name={name} onChange={changeHandler}/>
-            <Button  type="button" onClick={addItem}> Add</Button>
+            {/* <FormInput type="text" name={name} id={0} onChange={listCtx.addListItem} /> */}
+            <textarea name={name} id={0} onChange={listCtx.addListItem} ></textarea>
 
-            {lists.length > 0 ? lists.map(list => (
-                <div key={list} className="state-container">
-                    <FormInput type="text" name={name} onChange={changeHandler}/>
+
+            {lists.length > 0 ? lists.map((list, i) => (
+                <div key={i+1} className="state-container">
+                    <textarea name={name} id={i+1} onChange={listCtx.addListItem} ></textarea>
+                    {/* <FormInput type="textarea" name={name} id={i+1} onChange={listCtx.addListItem} /> */}
                     <Button  type="button" onClick={removeList} id={list}> &times;</Button>
-                    <Button  type="button" onClick={addItem} id={list}> Add</Button>
                 </div>
             )) : ''}
             <Button type="button" onClick={addListItem}>+</Button>

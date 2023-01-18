@@ -8,7 +8,7 @@ const Auth = () => {
   
  
     return (
-        <div className="authentication-container">
+        <div className="authentication-container site-width">
             <SignIn />
             <SignUp />
         </div>
