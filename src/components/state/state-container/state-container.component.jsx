@@ -3,52 +3,62 @@ import StateItem from "../state-item/state-item.component";
 
 const StateContainer = ({contents}) => {
     const [news, updates, errors] = contents
-    // console.log(news, updates, errors)
+    const newsArr = news.news.map(item => item);
+    const updatesArr = updates.updates.map(item => item);
+    const errorsArr = errors.errors.map(item => item);
+ 
+  
+
+
 
     return (
         <Fragment>
                 <nav>
                 <h5>Újdonságok</h5>
-                    {news.length > 0 ?
+                    {newsArr.length > 0 ?
                             (
                                 <ul>
-                                {news.map(({id, content}) => (
-                                    <StateItem key={id} item={content} />
-                                ))}
+                                   { newsArr.map(({id, content}) => (
+                                        <StateItem key={id} content={content} />
+                                    ))}
+
                                 </ul>
                             ) 
                             : 
-                            <p> - </p>
+                            (<p> - </p>)
                     }
                 </nav>
                 <nav>
-                <h5>Frissítések</h5>
-                    {updates.length > 0 ?
+                <h5>Frissétések</h5>
+                    {updatesArr.length > 0 ?
                             (
                                 <ul>
-                                {updates.map(({id, content}) => (
-                                    <StateItem key={id} item={content} />
-                                ))}
+                                   { updatesArr.map(({id, content}) => (
+                                        <StateItem key={id} content={content} />
+                                    ))}
+
                                 </ul>
                             ) 
                             : 
-                            <p> - </p>
+                            (<p> - </p>)
                     }
                 </nav>
                 <nav>
                 <h5>Javítások</h5>
-                    {errors.length > 0 ?
+                    {errorsArr.length > 0 ?
                             (
                                 <ul>
-                                {errors.map(({id, content}) => (
-                                    <StateItem key={id} item={content} />
-                                ))}
+                                   { errorsArr.map(({id, content}) => (
+                                        <StateItem key={id} content={content} />
+                                    ))}
+
                                 </ul>
                             ) 
                             : 
-                            <p> - </p>
+                           ( <p> - </p>)
                     }
                 </nav>
+
         
         </Fragment>
     )

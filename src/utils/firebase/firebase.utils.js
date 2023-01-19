@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth'
 
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDocs, getDoc, setDoc, collection } from 'firebase/firestore'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCvCwdm2tneZc981D8yqoiBlUeHPuoq4bA",
@@ -18,6 +18,28 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 
 export const db = getFirestore();
+
+export const addDocument = async (
+    objectsToAdd,
+    collectionKey,
+    documentKey
+  ) => {
+
+    try {
+       
+        await setDoc(doc(db, collectionKey, documentKey), objectsToAdd)
+    } catch(error) {
+        console.log(error);
+    }
+
+};
+
+export const getCategoriesAndDocuments = async (collectionKey) => {
+    const querySnapshot = await getDocs(collection(db, collectionKey));
+    return querySnapshot.docs.map(doc => doc.data());
+
+};
+
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     if (!userAuth) return;

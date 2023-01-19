@@ -1,7 +1,8 @@
 
-const StateItem = (item) => {
+const StateItem = ({content}) => {
+
     return (
-        <li>{item}</li>
+        <li>{content}</li>
     )
 }
 

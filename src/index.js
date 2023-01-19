@@ -5,7 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/user/user.context';
 import { ListProvider } from './context/list/list.component';
-
+import { FormProvider } from './context/form/form.component';
+import { VersionProvider } from './context/version/version.component';
 
 import './index.scss';
 
@@ -14,9 +15,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <ListProvider>
-          <App />
-        </ListProvider>
+        <VersionProvider>
+          <FormProvider>
+            <ListProvider>
+              <App />
+            </ListProvider>
+          </FormProvider>
+        </VersionProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

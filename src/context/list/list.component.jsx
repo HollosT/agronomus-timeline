@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import { useReducer, createContext } from "react";
 import { createAction } from "../../utils/reducer/reducer.utils";
 
 const addItemToList = (list, item) => {
@@ -40,7 +40,7 @@ const listReducer = (state, action) => {
   }
 };
 
-export const ListContext = React.createContext({
+export const ListContext = createContext({
   contents: {},
   addListItem: () => {},
 });
