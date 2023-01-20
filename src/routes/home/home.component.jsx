@@ -9,7 +9,7 @@ const Home = () => {
     const versions = useContext(VersionContext);
 
     return (
-        <section className="site-width">
+        <section>
             {versions.versions.map(version => (
                 <Timeline key={version.versionNumber} version={version} />
             ))}

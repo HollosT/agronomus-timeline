@@ -21,9 +21,9 @@ const Navigation = () => {
   return (
     <Fragment>
       <nav className="main-navigation">
-        <Link to="/versions">
-            <Logo />
+        <Link to="/versions" className="home-link">
             <h5>Agronomus</h5>
+            <Logo />
         </Link>
         <div>
           {currentUser ? (<Link to="/add-new">Add version</Link>) : null}

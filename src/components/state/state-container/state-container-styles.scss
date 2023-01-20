@@ -1,0 +1,43 @@
+$green: rgba(105, 191, 74, 1);
+$red: rgba(250, 82, 113, 1);
+$yellow: rgba(227, 152, 0, 1);
+
+.state {
+    margin-bottom: 3rem;
+
+    .state-title--container {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-content: center;
+
+
+        h5{
+           margin-bottom: .875rem;
+        }
+
+        .news {
+            color: $green;
+        }
+        .updates {
+            color: $yellow;
+        }
+        .errors {
+            color: $red;
+        }
+    }
+
+     ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.675rem;
+
+        li {
+            margin-left: 2.5rem;
+        }
+    }
+    p {
+        margin-left: 2.5rem;
+    
+    }
+}

@@ -2,7 +2,7 @@
 const StateItem = ({content}) => {
 
     return (
-        <li>{content}</li>
+        <li className="fs-base">{content}</li>
     )
 }
 

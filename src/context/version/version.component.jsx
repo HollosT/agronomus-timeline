@@ -17,7 +17,7 @@ export const VersionProvider = (props) => {
       const getVersions = async () => {
         if(userId) {
           const versionsArr = await getCategoriesAndDocuments(userId)
-          setVersions(versionsArr)
+          setVersions(versionsArr.reverse())
 
         }
       }

@@ -40,23 +40,23 @@ const AddNewContainer = () => {
     return (
         <form className="form-container" onSubmit={handleSubmit}>
             <div>
-                <FormInput label="Version number" type="number" name="versionNumber" value={versionNumber} onChange={formCtx.changeHandler}/>
-                <FormInput label="Title" type="text" name="title" value={title} onChange={formCtx.changeHandler}/>
-                <FormInput label="Date" type="date" name="date" value={date} onChange={formCtx.changeHandler}/>
-                <FormInput label="Description" type="richtext" name="description" value={description} onChange={formCtx.changeHandler}/>
+                <FormInput label="Verzió száma:" type="number" name="versionNumber" value={versionNumber} onChange={formCtx.changeHandler}/>
+                <FormInput label="Verzió címe:" type="text" name="title" value={title} onChange={formCtx.changeHandler}/>
+                <FormInput label="Dátum:" type="date" name="date" value={date} onChange={formCtx.changeHandler}/>
+                <textarea rows="5" cols="73" label="Description" type="richtext" name="description" value={description} onChange={formCtx.changeHandler}> </textarea>
             </div>
 
             <div className="main-state-container">
                 <div className="new-container">
-                    <h5>What is new?</h5>
+                    <label>Újjítások:</label>
                     <Lists state="news"/>
                 </div>
                 <div className="new-container">
-                    <h5>What was updated?</h5>
+                    <label>Frissítések:</label>
                     <Lists state="updates"/>
                 </div>
                 <div className="new-container">
-                    <h5>What is fixed?</h5>
+                    <label>Javítások:</label>
                     <Lists state="errors"/>
                 </div>
 

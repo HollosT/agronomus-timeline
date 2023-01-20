@@ -6,7 +6,7 @@ const NewVersion = () => {
 
     return (
         <div className="new-version-container site-width">
-            <h1>Add new version</h1>
+            <h1>Új verzió hozzáadása</h1>
             <AddNewContainer />
         </div>
     )

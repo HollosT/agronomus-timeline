@@ -1,11 +1,26 @@
+$dark-blue: rgba(29, 45, 61, 1);
+$primary-blue: rgba(41, 56, 71, 1);
+$yellow: rgba(227, 152, 0, 1);
+$white: white;
+$dark-grey: rgba(63, 76, 90, 1);
+$main-grey: rgba(201, 205, 209, 1);
+
 .form-container {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    align-items: baseline;
+ 
+    gap: 4rem;
+
 
     .main-state-container {
         display: grid;
+        gap: 2rem;
         // grid-template-columns: 1fr 1fr 1fr;
+        h5 {
+            color: $main-grey;
+        }
     }
+
 }
