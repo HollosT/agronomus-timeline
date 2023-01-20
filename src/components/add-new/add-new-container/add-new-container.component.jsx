@@ -39,11 +39,14 @@ const AddNewContainer = () => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <div>
+            <div className="main-form-container">
                 <FormInput label="Verzió száma:" type="number" name="versionNumber" value={versionNumber} onChange={formCtx.changeHandler}/>
                 <FormInput label="Verzió címe:" type="text" name="title" value={title} onChange={formCtx.changeHandler}/>
+                <div>
+                    <label htmlFor="description">Leírás:</label>
+                    <textarea rows="5" cols="73" label="Description" type="richtext" name="description" value={description} onChange={formCtx.changeHandler}> </textarea>
+                </div>
                 <FormInput label="Dátum:" type="date" name="date" value={date} onChange={formCtx.changeHandler}/>
-                <textarea rows="5" cols="73" label="Description" type="richtext" name="description" value={description} onChange={formCtx.changeHandler}> </textarea>
             </div>
 
             <div className="main-state-container">
@@ -61,7 +64,7 @@ const AddNewContainer = () => {
                 </div>
 
             </div>
-            <Button type="submit">Add</Button>
+            <Button type="submit" >Add</Button>
         </form>  
     )
 }

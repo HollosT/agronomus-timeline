@@ -10,14 +10,22 @@ $main-grey: rgba(201, 205, 209, 1);
     display: grid;
     grid-template-columns: 1fr;
     align-items: baseline;
- 
-    gap: 4rem;
+    width: 80vw;
+    gap: 2rem;
 
-
+    .main-form-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+        align-items: baseline;
+        border-bottom: 1px solid $dark-blue;
+        padding-bottom: 3rem;
+    }
+    
     .main-state-container {
         display: grid;
         gap: 2rem;
-        // grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         h5 {
             color: $main-grey;
         }

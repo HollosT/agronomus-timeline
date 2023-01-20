@@ -1,19 +1,24 @@
 .list-textarea {
-    // width: 30rem;
+    width: 34rem;
 }
 
+.list-container {
+    width: 40vw;
 
-.state-container {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    position: relative;
-
-    .form-input {
+    
+    .state-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .5rem;
+        margin-bottom: .5rem;
         
-    }
-
-    button {
-        // position: absolute;
+        .form-input {
+            
+        }
+        
+        button {
+            // position: absolute;
+        }
     }
 }

@@ -1,15 +1,23 @@
+$dark-blue: rgba(29, 45, 61, 1);
+$primary-blue: rgba(41, 56, 71, 1);
+$yellow: rgba(227, 152, 0, 1);
+$main-grey: rgba(201, 205, 209, 1);
+$dark-grey: rgba(63, 76, 90, 1);
+$red: rgba(250, 82, 113, 1);
+
+
+
 .button-container {
-    min-width: 165px;
+
     width: auto;
     height: 50px;
     letter-spacing: 0.5px;
     line-height: 50px;
     padding: 0 35px 0 35px;
-    font-size: 15px;
+    font-size: 1rem;
     background-color: black;
     color: white;
     text-transform: uppercase;
-    font-family: 'Open Sans Condensed';
     font-weight: bolder;
     border: none;
     cursor: pointer;
@@ -39,6 +47,34 @@
   
       &:hover {
         background-color: black;
+        color: white;
+        border: none;
+      }
+    }
+    &.add {
+      background-color: $dark-grey;
+      color: white;
+      border: none;
+   
+  
+      &:hover {
+        background-color: $dark-blue;
+        color: white;
+        border: none;
+      }
+    }
+    &.delete {
+      background-color: $red;
+      color: white;
+      border: none;
+      padding: 0 15px 0 15px;
+      height: 40px;
+      letter-spacing: 0.5px;
+      line-height: 40px;
+   
+  
+      &:hover {
+        background-color: rgb(201, 67, 91);
         color: white;
         border: none;
       }
