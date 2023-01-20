@@ -14,12 +14,11 @@ export const VersionContext = createContext({
 })
 
 export const VersionProvider = (props) => {
-    const userCtx = useContext(UserContext)
     const [versions, setVersions] = useState([])
 
-    const getDocuments = async () => {
+    const getDocuments = async (key) => {
  
-      const versionWannbe = await getCategoriesAndDocuments(userCtx.currentUser.uid)
+      const versionWannbe = await getCategoriesAndDocuments(key)
         setVersions(versionWannbe)
     }
 

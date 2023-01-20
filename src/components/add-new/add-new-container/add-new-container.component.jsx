@@ -23,6 +23,7 @@ const AddNewContainer = () => {
 
 
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const payload = {
@@ -32,7 +33,7 @@ const AddNewContainer = () => {
             description,
             contents: listCtx.contents
         }
-
+        
         versionCtx.addVersion(payload, userCtx.currentUser.uid)
     }
 
