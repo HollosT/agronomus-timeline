@@ -13,11 +13,18 @@ export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
     const value = { currentUser, setCurrentUser }
 
+    useEffect(() => {
+        if(!currentUser) {
+            localStorage.removeItem('uid')
+        }
+    }, [currentUser])
+
 
     useEffect(() => {
        const unsubscribe = onAuthStateChangedListener((user) => {
             if(user) {
                 createUserDocumentFromAuth(user)
+                localStorage.setItem('uid', user.uid)
             }
             setCurrentUser(user)
        });

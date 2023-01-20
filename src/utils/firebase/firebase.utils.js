@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWith
 
 import { getFirestore, doc, getDocs, getDoc, setDoc, collection } from 'firebase/firestore'
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyCvCwdm2tneZc981D8yqoiBlUeHPuoq4bA",
     authDomain: "agronomus-timeline-db-10a52.firebaseapp.com",

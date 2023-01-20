@@ -1,10 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { addDocument, getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
-import { UserContext } from "../user/user.context";
-
-
-
-
 
 
 export const VersionContext = createContext({
@@ -16,17 +11,27 @@ export const VersionContext = createContext({
 export const VersionProvider = (props) => {
     const [versions, setVersions] = useState([])
 
-    const getDocuments = async (key) => {
- 
-      const versionWannbe = await getCategoriesAndDocuments(key)
-        setVersions(versionWannbe)
-    }
+    useEffect(() => {
+      const userId = localStorage.getItem('uid');
+
+      const getVersions = async () => {
+        if(userId) {
+          const versionsArr = await getCategoriesAndDocuments(userId)
+          setVersions(versionsArr)
+
+        }
+      }
+
+      getVersions()
+    }, [])
+   
+   
 
     const addVersion =  (payload, key) => {
 
-        const documentKey = payload.versionNumber
+      const documentKey = payload.versionNumber
        
-        addDocument(payload, key, documentKey)
+      addDocument(payload, key, documentKey)
     }
     
     return (
@@ -34,7 +39,6 @@ export const VersionProvider = (props) => {
         value={{
             versions,
             addVersion,
-            getDocuments
         }}
       >
         {props.children}

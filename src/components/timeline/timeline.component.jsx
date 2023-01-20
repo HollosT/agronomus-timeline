@@ -6,7 +6,7 @@ const Timeline = ({version}) => {
 
     return (
         <div className="timeline-container">
-            <h3>{versionNumber}</h3>
+            <h3>{versionNumber}. verzió</h3>
             <div className="horizontal-line"></div>
             <div>
                 <div className="title-container">

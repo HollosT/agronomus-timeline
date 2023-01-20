@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/user/user.context";
 
 import { signOutUser } from '../../utils/firebase/firebase.utils'
@@ -8,18 +8,26 @@ import { ReactComponent as Logo } from '../../assets/logo.svg'
 import "./navigation.styles.scss";
 
 const Navigation = () => {
+  const navigate = useNavigate()
+
   const { currentUser } = useContext(UserContext);
+
+  const signOutHandler =() => {
+    signOutUser();
+    navigate('/')
+
+  }
 
   return (
     <Fragment>
       <nav className="main-navigation">
-        <Link to="/">
+        <Link to="/versions">
             <Logo />
             <h5>Agronomus</h5>
         </Link>
         <div>
           {currentUser ? (<Link to="/add-new">Add version</Link>) : null}
-          {currentUser ? (<span onClick={signOutUser}>Logout</span>) : (<Link to="/auth">Sign in</Link>)}
+          {currentUser ? (<span onClick={signOutHandler}>Logout</span>) : (<Link to="/">Sign in</Link>)}
         </div>
       </nav>
       <Outlet />

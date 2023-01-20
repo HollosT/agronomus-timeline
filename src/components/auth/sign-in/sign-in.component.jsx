@@ -20,7 +20,7 @@ const SignIn = () => {
 
     const resetFormFields = () => {
         setFormData(defaultFormFields);
-        navigate('/')
+        navigate('/versions')
       };
 
     const handleChange = (event) => {
