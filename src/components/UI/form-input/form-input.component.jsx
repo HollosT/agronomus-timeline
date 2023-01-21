@@ -1,17 +1,18 @@
 import './form-input.styles.scss'
 
-const FormInput = ({ label, ...otherProps }) => {
+const FormInput = ({ label, notvalid, ...otherProps }) => {
+
   return (
       <div className="group">
       { label &&   
         <label
-          className={`${
-            otherProps.value.length > 0 ? "shrink" : ""
-          } form-input-label`}
+          className="form-input-label"
         >
           {label}
         </label>}
-        <input className="form-input" {...otherProps} />
+        <input className={`${
+            notvalid === "true" ? "error" : ""
+          } form-input`} {...otherProps} />
     </div>
   );
 };

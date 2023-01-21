@@ -23,6 +23,8 @@ $red: rgba(250, 82, 113, 1);
     cursor: pointer;
     display: flex;
     justify-content: center;
+    // transition: all 250ms ease-in-out;
+
   
     &:hover {
       background-color: white;
@@ -71,6 +73,7 @@ $red: rgba(250, 82, 113, 1);
       height: 40px;
       letter-spacing: 0.5px;
       line-height: 40px;
+      
    
   
       &:hover {

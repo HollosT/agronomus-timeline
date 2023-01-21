@@ -6,7 +6,7 @@ import {ListContext} from '../../../context/list/list.component'
 import './list.styles.scss'
 
 let name;
-let count = 0;
+let count = 1;
 let defaultLists = [];
 
 
@@ -35,11 +35,11 @@ const List = ({state, onInputHandler}) => {
     
     return (
         <div className="list-container">
-            <textarea name={name} id={0} onChange={listCtx.addListItem} className="list-textarea" rows="2" cols="70"></textarea>
+            <textarea name={name} id={0} onChange={listCtx.addListItem} className="list-textarea state-container" rows="2" cols="70"></textarea>
 
-            {lists.length > 0 ? lists.map((list, i) => (
-                <div key={i+1} className="state-container">
-                    <textarea name={name} id={i+1} onChange={listCtx.addListItem} className="list-textarea" rows="2" cols="70"></textarea>
+            {lists.length > 0 ? lists.map(list => (
+                <div key={list} className="state-container">
+                    <textarea name={name} id={list} onChange={listCtx.addListItem} className="list-textarea" rows="2" cols="70"></textarea>
                     <Button  type="button" onClick={removeList} id={list} buttonType="delete"> &times;</Button>
                 </div>
             )) : ''}

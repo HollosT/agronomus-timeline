@@ -5,23 +5,23 @@ import { addDocument, getCategoriesAndDocuments } from "../../utils/firebase/fir
 export const VersionContext = createContext({
     versions: [],
     addVersion: () => {},
-    getDocuments: () => {}
+    getDocuments: () => {},
+    isLoading: false
 })
 
 export const VersionProvider = (props) => {
-    const [versions, setVersions] = useState([])
+    const [versions, setVersions] = useState([]);
+    const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
-      const userId = localStorage.getItem('uid');
 
-      const getVersions = async () => {
-        if(userId) {
-          const versionsArr = await getCategoriesAndDocuments(userId)
+      const getVersions = async () => {  
+          setLoading(true)
+
+          const versionsArr = await getCategoriesAndDocuments()
           setVersions(versionsArr.reverse())
-
-        }
+          setLoading(false)
       }
-
       getVersions()
     }, [])
    
@@ -39,6 +39,7 @@ export const VersionProvider = (props) => {
         value={{
             versions,
             addVersion,
+            isLoading
         }}
       >
         {props.children}

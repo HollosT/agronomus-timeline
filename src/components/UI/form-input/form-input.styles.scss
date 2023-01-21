@@ -1,7 +1,9 @@
 
-$main-grey: rgba(201, 205, 209, 1);
+$main-grey: rgb(243, 243, 243);
 $main-color: black;
 $white: white;
+$dark-grey: rgba(63, 76, 90, 1);
+$red: rgba(250, 82, 113, 1);
 
 .group {
   position: relative;
@@ -9,19 +11,21 @@ $white: white;
 
   .form-input {
     background: none;
-    background-color: white;
-    color: $main-color;
+    background-color: $main-grey;
+    color: $dark-grey;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
     width: 100%;
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid $main-color;
+    border: 2px solid transparent;
+
+    border-radius: 5px;
 
 
     &:focus {
       outline: none;
+      background-color: $white;
+
     }
 
   }
@@ -30,5 +34,9 @@ $white: white;
     letter-spacing: 0.3em;
   }
 
+  .error {
+    border: 2px solid $red;
+
+  }
  
 }

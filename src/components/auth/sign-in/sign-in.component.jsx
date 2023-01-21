@@ -20,7 +20,7 @@ const SignIn = () => {
 
     const resetFormFields = () => {
         setFormData(defaultFormFields);
-        navigate('/versions')
+        navigate('/')
       };
 
     const handleChange = (event) => {
@@ -54,11 +54,8 @@ const SignIn = () => {
     }
 
     return (
-          <div>
-              <h2>Already have an account</h2>
-              <span>Sign in with your email and password</span>
-              
-              <form onSubmit={handleSubmit} className="form-container">
+          <div className='sign-in--container'>
+              <form className='sign-in--form' onSubmit={handleSubmit}>
                 <FormInput label="Email address" type="email" name="email" required onChange={handleChange} value={email}/>
                 <FormInput label="Password" type="password" name="password" required onChange={handleChange} value={password}/>
                 <Button type="submit">Sign In</Button>

@@ -1,11 +1,9 @@
 .list-textarea {
-    width: 34rem;
+    width: 100%;
+
 }
 
 .list-container {
-    width: 40vw;
-
-    
     .state-container {
         display: flex;
         flex-direction: row;
@@ -13,12 +11,15 @@
         gap: .5rem;
         margin-bottom: .5rem;
         
-        .form-input {
-            
+        .list-textarea {
+            width: 100%;
+ 
         }
         
+        
         button {
-            // position: absolute;
+            width: 2rem;
+            
         }
     }
 }

@@ -21,13 +21,13 @@ const Navigation = () => {
   return (
     <Fragment>
       <nav className="main-navigation">
-        <Link to="/versions" className="home-link">
+        <Link to="/" className="home-link">
             <h5>Agronomus</h5>
             <Logo />
         </Link>
         <div>
           {currentUser ? (<Link to="/add-new">Add version</Link>) : null}
-          {currentUser ? (<span onClick={signOutHandler}>Logout</span>) : (<Link to="/">Sign in</Link>)}
+          {currentUser ? (<span onClick={signOutHandler}>Logout</span>) : (<Link to="/auth">Sign in</Link>)}
         </div>
       </nav>
       <Outlet />

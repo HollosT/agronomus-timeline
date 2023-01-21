@@ -22,8 +22,8 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={ <Navigation />}>
-          <Route path='/versions' element={ <Home />} />
-          <Route index element={ <Auth />} />
+          <Route index element={ <Home />} />
+          <Route path='auth' element={ <Auth />} />
           <Route path='add-new' element={ <NewVersion />} />
       </Route>
     </Routes>

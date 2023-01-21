@@ -35,7 +35,7 @@ export const addDocument = async (
 };
 
 export const getCategoriesAndDocuments = async (collectionKey) => {
-    const querySnapshot = await getDocs(collection(db, collectionKey));
+    const querySnapshot = await getDocs(collection(db, 'nXRAEIupNacMILKRKRyV9i77lju2'));
     return querySnapshot.docs.map(doc => doc.data());
 
 };

@@ -31,6 +31,17 @@ body {
 
 label {
   color: $main-grey;
+  font-weight: 500;
+}
+
+textarea {
+  border-radius: 5px;
+  color: $dark-grey;
+  background-color: rgb(243, 243, 243);
+}
+
+textarea:focus {
+  background-color: white;
 }
 
 code {
@@ -80,3 +91,4 @@ li {
 .mb-100 {
   margin-bottom: 1rem;
 }
+
