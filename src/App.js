@@ -10,14 +10,6 @@ import { useEffect, useState } from 'react';
 
 
 const App = () => {
-  const [uid, setUid] = useState()
-
-  useEffect(() => {
-    const id = localStorage.getItem('uid');
-    setUid(id)
-  }, [])
-
- 
 
   return (
     <Routes>

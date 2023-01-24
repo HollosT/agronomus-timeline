@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { addDocument, getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
 
+
 export const VersionContext = createContext({
     versions: [],
     addVersion: () => {},
@@ -10,7 +11,7 @@ export const VersionContext = createContext({
 })
 
 export const VersionProvider = (props) => {
-    const [versions, setVersions] = useState([]);
+    const [versions, setVersions] = useState();
     const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -31,7 +32,11 @@ export const VersionProvider = (props) => {
 
       const documentKey = payload.versionNumber
        
-      addDocument(payload, key, documentKey)
+      addDocument(payload, key, documentKey);
+
+      setVersions(prevState => {
+        return [payload, ...prevState]
+      })
     }
     
     return (
