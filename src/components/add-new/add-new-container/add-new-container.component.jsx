@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import FormInput from "../../UI/form-input/form-input.component";
 import Button from '../../UI/button/button.component'
 import Lists from "../list/list.component";
@@ -6,15 +6,19 @@ import { FormContext } from "../../../context/form/form.component";
 import { ListContext } from "../../../context/list/list.component";
 import { VersionContext } from "../../../context/version/version.component";
 import { UserContext} from "../../../context/user/user.context"
+import Modal from "../../modal/modal.component";
 
 
 import './add-new.styles.scss'
+import { useNavigate } from "react-router-dom";
 
 let isError = "false"
 
 
 const AddNewContainer = () => {
-    const [isTouched, setIsTouched] = useState(false)
+    const navigate = useNavigate()
+    const [btnState, setBtnState] = useState('inactive')
+    const [modalIsOpen, setModalIsOpen] = useState(false)
     const formCtx = useContext(FormContext);
     const listCtx = useContext(ListContext);
     const userCtx = useContext(UserContext);
@@ -22,12 +26,18 @@ const AddNewContainer = () => {
 
     const {versionNumber, title, date, description} = formCtx.formFields;
 
+    const changeHandler = (event) => {
+        formCtx.changeHandler(event)
+        if(versionNumber.length === 0 || title.length === 0 ||  description.length === 0 ||  date.length === 0) {
+            setBtnState('inactive')
+        } else {
+
+            setBtnState('')
+        }
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-    
-
             const payload = {
                 versionNumber,
                 title,
@@ -36,20 +46,30 @@ const AddNewContainer = () => {
                 contents: listCtx.contents
             }
             
-            versionCtx.addVersion(payload, userCtx.currentUser.uid)
+        versionCtx.addVersion(payload, userCtx.currentUser.uid)
+        setModalIsOpen(true)
+    }
 
+    const updateModal = () => {
+        setModalIsOpen(prevState =>  prevState = !prevState)
+    }
+
+    const openVersions = () => {
+        navigate('/')
     }
 
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
+        <Fragment>
+            {modalIsOpen && <Modal title="Sikeresen hozzá adott verzió!" onCancel={updateModal} onNavigate={openVersions} />}
+            <form className="form-container" onSubmit={handleSubmit}>
             <div className="main-form-container">
-                <FormInput label="Verzió száma:" type="number" name="versionNumber" value={versionNumber} onChange={formCtx.changeHandler} notvalid={isError}/>
-                <FormInput label="Verzió címe:" type="text" name="title" value={title} onChange={formCtx.changeHandler} notvalid={isError}/>
+                <FormInput label="Verzió száma:" type="number" name="versionNumber" value={versionNumber} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} notvalid={isError}/>
+                <FormInput label="Verzió címe:" type="text" name="title" value={title} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} notvalid={isError}/>
                 <div>
                     <label htmlFor="description">Leírás:</label>
-                    <textarea rows="5" cols="73" label="Description" type="richtext" name="description" value={description} onChange={formCtx.changeHandler} notvalid={isError}> </textarea>
+                    <textarea rows="5" cols="73" label="Description" type="richtext" name="description" value={description} onBlur={changeHandler} onChange={changeHandler} onFocus={changeHandler} notvalid={isError}> </textarea>
                 </div>
-                <FormInput label="Dátum:" type="date" name="date" value={date} onChange={formCtx.changeHandler} notvalid={isError}/>
+                <FormInput label="Dátum:" type="date" name="date" value={date} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} notvalid={isError}/>
             </div>
 
             <div className="main-state-container">
@@ -58,7 +78,7 @@ const AddNewContainer = () => {
                         <span className="material-symbols-outlined news">
                             add_box
                         </span>
-                        <label>Újjítások:</label>
+                        <label>Újítások:</label>
                     </div>
                     <Lists state="news"/>
                 </div>
@@ -83,10 +103,12 @@ const AddNewContainer = () => {
 
             </div>
             <div className="add-new--btn-container">
-                <Button type="submit">Mentés</Button>
+                <Button type="submit" buttonType={btnState}>Mentés</Button>
 
             </div>
-        </form>  
+         </form>  
+        </Fragment>
+        
     )
 }
 

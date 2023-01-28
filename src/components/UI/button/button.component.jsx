@@ -5,12 +5,14 @@ const BUTTON_TYPE_CLASSES = {
     active: 'active',
     inverted: 'inverted',
     add: 'add',
-    delete: 'delete'
+    delete: 'delete',
+    inactive: 'inactive'
 }
 
-const Button = ({children, buttonType, ...otherPorps}) => {
+const Button = ({children, buttonType, ...otherProps}) => {
+
     return (
-        <button className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`} {...otherPorps}>
+        <button className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`} {...otherProps}>
             {children}
         </button>
     )

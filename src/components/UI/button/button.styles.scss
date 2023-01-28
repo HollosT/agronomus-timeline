@@ -82,4 +82,9 @@ $red: rgba(250, 82, 113, 1);
         border: none;
       }
     }
+    &.inactive { 
+        background-color: rgb(32, 32, 32);
+        color: rgb(143, 142, 142);
+        pointer-events: none;
+    }
   }
