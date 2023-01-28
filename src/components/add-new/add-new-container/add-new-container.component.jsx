@@ -17,13 +17,10 @@ let isError = "false"
 
 const AddNewContainer = () => {
     let successfull;
-    let msg = {
-        versionNumber: 1,
-        title: 'Test'
-    };
+    let msg;
     const navigate = useNavigate()
     const [btnState, setBtnState] = useState('inactive')
-    const [modalIsOpen, setModalIsOpen] = useState(true)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
     const formCtx = useContext(FormContext);
     const listCtx = useContext(ListContext);
     const userCtx = useContext(UserContext);
