@@ -16,9 +16,14 @@ let isError = "false"
 
 
 const AddNewContainer = () => {
+    let successfull;
+    let msg = {
+        versionNumber: 1,
+        title: 'Test'
+    };
     const navigate = useNavigate()
     const [btnState, setBtnState] = useState('inactive')
-    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [modalIsOpen, setModalIsOpen] = useState(true)
     const formCtx = useContext(FormContext);
     const listCtx = useContext(ListContext);
     const userCtx = useContext(UserContext);
@@ -45,8 +50,22 @@ const AddNewContainer = () => {
                 description,
                 contents: listCtx.contents
             }
-            
-        versionCtx.addVersion(payload, userCtx.currentUser.uid)
+          try {
+              versionCtx.addVersion(payload, userCtx.currentUser.uid)
+
+              successfull = true
+              msg = {
+                  versionNumber,
+                  title
+              }
+          }  catch(error) {
+            successfull = false 
+            msg = {error}
+
+          }
+ 
+
+
         setModalIsOpen(true)
     }
 
@@ -60,7 +79,7 @@ const AddNewContainer = () => {
 
     return (
         <Fragment>
-            {modalIsOpen && <Modal title="Sikeresen hozzá adott verzió!" onCancel={updateModal} onNavigate={openVersions} />}
+            {modalIsOpen && <Modal status={true} content={msg} onCancel={updateModal} onNavigate={openVersions} />}
             <form className="form-container" onSubmit={handleSubmit}>
             <div className="main-form-container">
                 <FormInput label="Verzió száma:" type="number" name="versionNumber" value={versionNumber} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} notvalid={isError}/>
