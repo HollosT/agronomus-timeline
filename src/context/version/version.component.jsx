@@ -11,7 +11,7 @@ export const VersionContext = createContext({
 })
 
 export const VersionProvider = (props) => {
-    const [versions, setVersions] = useState();
+    const [versions, setVersions] = useState([]);
     const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
