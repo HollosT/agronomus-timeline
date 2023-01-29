@@ -6,25 +6,27 @@ import { FormContext } from "../../../context/form/form.component";
 import { ListContext } from "../../../context/list/list.component";
 import { VersionContext } from "../../../context/version/version.component";
 import { UserContext} from "../../../context/user/user.context"
+import { ModalContext } from "../../../context/modal/modal.component";
 import Modal from "../../modal/modal.component";
 
 
 import './add-new.styles.scss'
 import { useNavigate } from "react-router-dom";
 
+
 let isError = "false"
 
 
 const AddNewContainer = () => {
-    let successfull;
-    let msg;
-    const navigate = useNavigate()
+    const modalCtx = useContext(ModalContext)
     const [btnState, setBtnState] = useState('inactive')
-    const [modalIsOpen, setModalIsOpen] = useState(false)
     const formCtx = useContext(FormContext);
     const listCtx = useContext(ListContext);
     const userCtx = useContext(UserContext);
     const versionCtx = useContext(VersionContext)
+    const navigate = useNavigate()
+
+    const {isOpen: modalIsOpen, openModal, closeModal, setModal} = modalCtx
 
     const {versionNumber, title, date, description} = formCtx.formFields;
 
@@ -39,6 +41,7 @@ const AddNewContainer = () => {
     }
 
     const handleSubmit = async (event) => {
+
         event.preventDefault();
             const payload = {
                 versionNumber,
@@ -48,27 +51,25 @@ const AddNewContainer = () => {
                 contents: listCtx.contents
             }
           try {
-              versionCtx.addVersion(payload, userCtx.currentUser.uid)
+             versionCtx.addVersion(payload, userCtx.currentUser.uid)
+          
+            setModal({successful: true, content: {versionNumber, title}})
+            formCtx.clearFields();
+            listCtx.clearLists();
 
-              successfull = true
-              msg = {
-                  versionNumber,
-                  title
-              }
           }  catch(error) {
-            successfull = false 
-            msg = {error}
+            console.log(error)
 
+          } finally{
+            openModal()
           }
- 
 
-
-        setModalIsOpen(true)
     }
 
     const updateModal = () => {
-        setModalIsOpen(prevState =>  prevState = !prevState)
+       closeModal()
     }
+
 
     const openVersions = () => {
         navigate('/')
@@ -76,7 +77,7 @@ const AddNewContainer = () => {
 
     return (
         <Fragment>
-            {modalIsOpen && <Modal status={true} content={msg} onCancel={updateModal} onNavigate={openVersions} />}
+            {modalIsOpen && <Modal onCancel={updateModal} onNavigate={openVersions}/>}
             <form className="form-container" onSubmit={handleSubmit}>
             <div className="main-form-container">
                 <FormInput label="Verzió száma:" type="number" name="versionNumber" value={versionNumber} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} notvalid={isError}/>
@@ -96,7 +97,7 @@ const AddNewContainer = () => {
                         </span>
                         <label>Újítások:</label>
                     </div>
-                    <Lists state="news"/>
+                    <Lists  state="news" />
                 </div>
                 <div className="new-container">
                     <div className="new-container--title_container">

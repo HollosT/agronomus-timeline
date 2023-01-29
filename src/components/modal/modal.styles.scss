@@ -69,7 +69,7 @@ $dark-grey: rgba(63, 76, 90, 1);
     .modal-action-container {
         display: flex;
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-end;
         background-color: $dark-blue;
         padding: 1rem;
     }

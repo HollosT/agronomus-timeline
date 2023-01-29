@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { addDocument, getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 export const VersionContext = createContext({
@@ -30,7 +30,7 @@ export const VersionProvider = (props) => {
 
     const addVersion =  (payload, key) => {
 
-      const documentKey = payload.versionNumber
+      const documentKey = uuidv4();
        
       addDocument(payload, key, documentKey);
 

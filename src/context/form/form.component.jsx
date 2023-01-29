@@ -16,6 +16,7 @@ export const FormContext = createContext({
     date: "",
     description: "",
     changeHandler: () => {},
+    clearFields: () => {}
   });
   
 export const FormProvider = (props) => {
@@ -30,11 +31,16 @@ export const FormProvider = (props) => {
         })
     } 
 
+    const clearFields = () => {
+      setFormFields(defaultFormFields)
+    }
+
     return (
       <FormContext.Provider
         value={{
             formFields,
-            changeHandler
+            changeHandler,
+            clearFields
         }}
       >
         {props.children}

@@ -26,15 +26,14 @@ export const addDocument = async (
   ) => {
 
     try {
-       
-        await setDoc(doc(db, collectionKey, documentKey), objectsToAdd)
+       await setDoc(doc(db, collectionKey, documentKey), objectsToAdd);
     } catch(error) {
-        console.log(error);
+       console.error(error);;
     }
 
 };
 
-export const getCategoriesAndDocuments = async (collectionKey) => {
+export const getCategoriesAndDocuments = async () => {
     const querySnapshot = await getDocs(collection(db, 'nXRAEIupNacMILKRKRyV9i77lju2'));
     return querySnapshot.docs.map(doc => doc.data());
 

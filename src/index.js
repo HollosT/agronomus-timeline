@@ -7,6 +7,8 @@ import { UserProvider } from './context/user/user.context';
 import { ListProvider } from './context/list/list.component';
 import { FormProvider } from './context/form/form.component';
 import { VersionProvider } from './context/version/version.component';
+import { ModalProvider } from './context/modal/modal.component';
+
 
 import './index.scss';
 
@@ -18,7 +20,9 @@ root.render(
         <VersionProvider>
           <FormProvider>
             <ListProvider>
-              <App />
+              <ModalProvider>
+                <App />
+              </ModalProvider>
             </ListProvider>
           </FormProvider>
         </VersionProvider>

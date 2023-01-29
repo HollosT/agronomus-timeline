@@ -19,6 +19,7 @@ const addItemToList = (list, item) => {
 
 const LIST_ACTION_TYPES = {
   SET_LIST_ITEMS: "SET_LIST_ITEMS",
+  INIT_LIST_ITEMS: "INIT_LIST_ITEMS"
 };
 
 const INITIAL_STATE = {
@@ -27,13 +28,14 @@ const INITIAL_STATE = {
 
 const listReducer = (state, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case LIST_ACTION_TYPES.SET_LIST_ITEMS:
       return {
         ...state,
         ...payload,
       };
+    case LIST_ACTION_TYPES.INIT_LIST_ITEMS:
+      return state = { contents: [{ news: [] }, { updates: [] }, { errors: [] }] };
 
     default:
       throw new Error(`Unhandled type ${type} in listReducer`);
@@ -43,6 +45,7 @@ const listReducer = (state, action) => {
 export const ListContext = createContext({
   contents: {},
   addListItem: () => {},
+  clearLists: () => {}
 });
 
 export const ListProvider = (props) => {
@@ -70,11 +73,18 @@ export const ListProvider = (props) => {
     }, 500);
   };
 
+  const clearLists = () => {
+ 
+    dispatch(createAction(LIST_ACTION_TYPES.INIT_LIST_ITEMS));
+    console.log(contents)
+  }
+
   return (
     <ListContext.Provider
       value={{
         contents: contents,
         addListItem: addListItem,
+        clearLists,
       }}
     >
       {props.children}
