@@ -7,36 +7,34 @@ export const VersionContext = createContext({
     versions: [],
     addVersion: () => {},
     getDocuments: () => {},
-    isLoading: false
+    isLoading: false,
+    getVersions: ()=> {},
 })
 
 export const VersionProvider = (props) => {
     const [versions, setVersions] = useState([]);
     const [isLoading, setLoading] = useState(false)
 
-    useEffect(() => {
+
 
       const getVersions = async () => {  
           setLoading(true)
 
           const versionsArr = await getCategoriesAndDocuments()
-          setVersions(versionsArr)
+          const ascVersions = versionsArr.sort((a,b)=>  b.created - a.created )
+          setVersions(ascVersions)
           setLoading(false)
       }
-      getVersions()
-    }, [])
+
+
    
    
 
     const addVersion =  (payload, key) => {
-
       const documentKey = uuidv4();
-       
       addDocument(payload, key, documentKey);
 
-      setVersions(prevState => {
-        return [payload, ...prevState]
-      })
+      getVersions()
     }
     
     return (
@@ -44,7 +42,8 @@ export const VersionProvider = (props) => {
         value={{
             versions,
             addVersion,
-            isLoading
+            isLoading,
+            getVersions
         }}
       >
         {props.children}

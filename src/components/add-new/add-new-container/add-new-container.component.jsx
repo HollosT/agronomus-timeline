@@ -44,6 +44,7 @@ const AddNewContainer = () => {
 
         event.preventDefault();
             const payload = {
+                created: new Date().getTime(),
                 versionNumber,
                 title,
                 date,
