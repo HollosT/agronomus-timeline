@@ -20,7 +20,7 @@ export const VersionProvider = (props) => {
           setLoading(true)
 
           const versionsArr = await getCategoriesAndDocuments()
-          setVersions(versionsArr.reverse())
+          setVersions(versionsArr)
           setLoading(false)
       }
       getVersions()
