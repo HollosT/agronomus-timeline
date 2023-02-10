@@ -16,11 +16,21 @@ export const FormContext = createContext({
     date: "",
     description: "",
     changeHandler: () => {},
-    clearFields: () => {}
+    clearFields: () => {},
+    setEditableFields: () => {}
   });
   
 export const FormProvider = (props) => {
     const [formFields, setFormFields] = useState(defaultFormFields);
+
+    const setEditableFields = (version) => {
+      setFormFields({
+        versionNumber: version.versionNumber,
+        title: version.title,
+        date: version.date,
+        description: version.description
+      })
+    }
 
 
     const changeHandler = (event) => {
@@ -40,7 +50,8 @@ export const FormProvider = (props) => {
         value={{
             formFields,
             changeHandler,
-            clearFields
+            clearFields,
+            setEditableFields
         }}
       >
         {props.children}

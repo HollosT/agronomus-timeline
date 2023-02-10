@@ -6,6 +6,7 @@ $dark-grey: rgba(63, 76, 90, 1);
 $main-grey: rgba(201, 205, 209, 1);
 
 
+
 .timeline-container {
     width: 80%;
     margin: 0 auto;
@@ -48,6 +49,22 @@ $main-grey: rgba(201, 205, 209, 1);
                     
                 }
             }
+        }
+    }
+
+    .edit-btn {
+        position: absolute;
+        right: 5%;
+        color: $yellow;
+        background-color: $dark-blue;
+        padding: .2rem;
+        box-shadow: 1px 1px 1px rgb(23, 36, 48);
+
+        &:hover, &:active{
+            transition: all 150ms ease-in-out;
+            box-shadow:none;
+            background-color: rgb(25, 38, 51);
+            cursor: pointer;
         }
     }
 }

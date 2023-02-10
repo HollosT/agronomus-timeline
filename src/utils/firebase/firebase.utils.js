@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth'
-import { getFirestore, doc, getDocs, getDoc, setDoc, collection, orderBy } from 'firebase/firestore'
+import { getFirestore, doc, getDocs, getDoc, setDoc, collection } from 'firebase/firestore'
 
 
 const firebaseConfig = {
@@ -39,6 +39,18 @@ export const getCategoriesAndDocuments = async () => {
 
 };
 
+export const getVersionById = async (versionId) => {
+    const docRef = doc(db, 'nXRAEIupNacMILKRKRyV9i77lju2', versionId);
+
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return docSnap.data()
+      } else {
+        console.log("No such document!");
+      }
+
+}
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     if (!userAuth) return;

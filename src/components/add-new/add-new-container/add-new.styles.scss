@@ -26,6 +26,11 @@ $yellow: rgba(227, 152, 0, 1);
         border-bottom: 1px solid $dark-blue;
         padding-bottom: 3rem;
         width: 80vw;
+
+        .description-container {
+            display: flex;
+            flex-direction: column;
+        }
     }
     
     .main-state-container {

@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import FormInput from "../../UI/form-input/form-input.component";
 import Button from '../../UI/button/button.component'
 import Lists from "../list/list.component";
@@ -14,10 +14,9 @@ import './add-new.styles.scss'
 import { useNavigate } from "react-router-dom";
 
 
-let isError = "false"
 
-
-const AddNewContainer = () => {
+const AddNewContainer = ({version, edit = false}) => {
+    const [isEdit, setIsEdit] = useState(edit)
     const modalCtx = useContext(ModalContext)
     const [btnState, setBtnState] = useState('inactive')
     const formCtx = useContext(FormContext);
@@ -26,7 +25,17 @@ const AddNewContainer = () => {
     const versionCtx = useContext(VersionContext)
     const navigate = useNavigate()
 
+   
     const {isOpen: modalIsOpen, openModal, closeModal, setModal} = modalCtx
+    const {setEditableFields} = formCtx
+
+    useEffect(() => {
+        if(edit) {
+            setEditableFields(version)
+        }
+
+    }, [])
+
 
     const {versionNumber, title, date, description} = formCtx.formFields;
 
@@ -81,13 +90,13 @@ const AddNewContainer = () => {
             {modalIsOpen && <Modal onCancel={updateModal} onNavigate={openVersions}/>}
             <form className="form-container" onSubmit={handleSubmit}>
             <div className="main-form-container">
-                <FormInput label="Verzió száma:" type="number" name="versionNumber" value={versionNumber} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} notvalid={isError}/>
-                <FormInput label="Verzió címe:" type="text" name="title" value={title} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} notvalid={isError}/>
-                <div>
+                <FormInput label="Verzió száma:" type="number" name="versionNumber" value={versionNumber} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler}/>
+                <FormInput label="Verzió címe:" type="text" name="title" value={title} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} />
+                <div className="description-container">
                     <label htmlFor="description">Leírás:</label>
-                    <textarea rows="5" cols="73" label="Description" type="richtext" name="description" value={description} onBlur={changeHandler} onChange={changeHandler} onFocus={changeHandler} notvalid={isError}> </textarea>
+                    <textarea rows="5" cols="73" label="Description" type="richtext" name="description" value={description} onBlur={changeHandler} onChange={changeHandler} onFocus={changeHandler} > </textarea>
                 </div>
-                <FormInput label="Dátum:" type="date" name="date" value={date} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} notvalid={isError}/>
+                <FormInput label="Dátum:" type="date" name="date" value={date} onChange={changeHandler} onBlur={changeHandler} onFocus={changeHandler} />
             </div>
 
             <div className="main-state-container">

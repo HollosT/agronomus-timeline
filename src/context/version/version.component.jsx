@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-import { addDocument, getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
+import { createContext, useState } from "react";
+import { addDocument, getCategoriesAndDocuments, getVersionById } from "../../utils/firebase/firebase.utils";
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -9,13 +9,22 @@ export const VersionContext = createContext({
     getDocuments: () => {},
     isLoading: false,
     getVersions: ()=> {},
+    version: {},
+    getVersion: () => {}
 })
 
 export const VersionProvider = (props) => {
     const [versions, setVersions] = useState([]);
+    const [version, setVersion] = useState({})
     const [isLoading, setLoading] = useState(false)
 
+      const getVersion= async (id) => {
+          setLoading(true)
 
+          const currVersion = await getVersionById(id);
+          setVersion(currVersion)
+          setLoading(false)
+      }
 
       const getVersions = async () => {  
           setLoading(true)
@@ -28,11 +37,13 @@ export const VersionProvider = (props) => {
 
 
    
-   
-
     const addVersion =  (payload, key) => {
-      const documentKey = uuidv4();
-      addDocument(payload, key, documentKey);
+      const id = uuidv4();
+      const version = {
+        ...payload,
+        versionId: id
+      }
+      addDocument(version, key, id);
 
       getVersions()
     }
@@ -43,7 +54,9 @@ export const VersionProvider = (props) => {
             versions,
             addVersion,
             isLoading,
-            getVersions
+            getVersions,
+            getVersion,
+            version
         }}
       >
         {props.children}
