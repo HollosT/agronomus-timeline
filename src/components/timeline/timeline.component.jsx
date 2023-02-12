@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Timeline = ({version}) => {
     const {versionNumber, title, description, date, contents, versionId} = version;
+
     const user = useContext(UserContext).currentUser;
     const navigate = useNavigate();
 

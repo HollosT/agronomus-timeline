@@ -26,12 +26,15 @@ const AddNewContainer = ({version, edit = false}) => {
     const navigate = useNavigate()
 
    
-    const {isOpen: modalIsOpen, openModal, closeModal, setModal} = modalCtx
-    const {setEditableFields} = formCtx
+    const {isOpen: modalIsOpen, openModal, closeModal, setModal} = modalCtx;
+    const {setEditableFields} = formCtx;
+    const {addLists, contents} = listCtx;
 
     useEffect(() => {
-        if(edit) {
+        if(edit && version) {
+            setIsEdit(edit)
             setEditableFields(version)
+            addLists(version.contents)
         }
 
     }, [])
@@ -107,7 +110,7 @@ const AddNewContainer = ({version, edit = false}) => {
                         </span>
                         <label>Újítások:</label>
                     </div>
-                    <Lists  state="news" />
+                    <Lists  state="news" edit={isEdit} contentType={version ? version.contents : ""} />
                 </div>
                 <div className="new-container">
                     <div className="new-container--title_container">
@@ -116,7 +119,7 @@ const AddNewContainer = ({version, edit = false}) => {
                         </span>
                         <label>Frissítések:</label>
                     </div>
-                    <Lists state="updates"/>
+                    <Lists state="updates" edit={isEdit} contentType={version ? version.contents : ""}/>
                 </div>
                 <div className="new-container">
                     <div className="new-container--title_container">
@@ -125,7 +128,7 @@ const AddNewContainer = ({version, edit = false}) => {
                         </span>
                         <label>Javítások:</label>
                     </div>
-                    <Lists state="errors"/>
+                    <Lists state="errors" edit={isEdit} contentType={version ? version.contents : ""}/>
                 </div>
 
             </div>

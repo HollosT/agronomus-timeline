@@ -1,4 +1,4 @@
-import { useReducer, createContext } from "react";
+import { useReducer, createContext, useEffect } from "react";
 import { createAction } from "../../utils/reducer/reducer.utils";
 
 const addItemToList = (list, item) => {
@@ -19,7 +19,8 @@ const addItemToList = (list, item) => {
 
 const LIST_ACTION_TYPES = {
   SET_LIST_ITEMS: "SET_LIST_ITEMS",
-  INIT_LIST_ITEMS: "INIT_LIST_ITEMS"
+  INIT_LIST_ITEMS: "INIT_LIST_ITEMS",
+  SET_CURRENT_LIST: "SET_CURRENT_LIST"
 };
 
 const INITIAL_STATE = {
@@ -36,6 +37,9 @@ const listReducer = (state, action) => {
       };
     case LIST_ACTION_TYPES.INIT_LIST_ITEMS:
       return state = { contents: [{ news: [] }, { updates: [] }, { errors: [] }] };
+    
+    case LIST_ACTION_TYPES.SET_CURRENT_LIST: 
+      return  state = { contents: [{ news: payload[0].news }, { updates: payload[1].updates }, { errors: payload[2].errors }] };
 
     default:
       throw new Error(`Unhandled type ${type} in listReducer`);
@@ -45,14 +49,16 @@ const listReducer = (state, action) => {
 export const ListContext = createContext({
   contents: {},
   addListItem: () => {},
-  clearLists: () => {}
+  clearLists: () => {},
+  getCurrentList: () => {},
+  addLists: () => {}
 });
 
 export const ListProvider = (props) => {
   let timer;
 
   const [{ contents }, dispatch] = useReducer(listReducer, INITIAL_STATE);
- 
+
 
   const addListItem = (e) => {
     clearTimeout(timer);
@@ -73,11 +79,21 @@ export const ListProvider = (props) => {
     }, 500);
   };
 
-  const clearLists = () => {
- 
-    dispatch(createAction(LIST_ACTION_TYPES.INIT_LIST_ITEMS));
-    console.log(contents)
+  const addLists = async (list) => {
+    if(list) {
+       dispatch(createAction(LIST_ACTION_TYPES.SET_CURRENT_LIST, [...list]));
+    }
   }
+
+  const clearLists = () => {
+    dispatch(createAction(LIST_ACTION_TYPES.INIT_LIST_ITEMS));
+  }
+
+  const getCurrentList = () => {
+      return contents
+  }
+
+
 
   return (
     <ListContext.Provider
@@ -85,6 +101,8 @@ export const ListProvider = (props) => {
         contents: contents,
         addListItem: addListItem,
         clearLists,
+        getCurrentList,
+        addLists
       }}
     >
       {props.children}
