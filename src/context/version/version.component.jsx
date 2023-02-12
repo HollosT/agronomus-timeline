@@ -37,12 +37,23 @@ export const VersionProvider = (props) => {
 
 
    
-    const addVersion =  (payload, key) => {
-      const id = uuidv4();
-      const version = {
-        ...payload,
-        versionId: id
+    const addVersion =  (payload, key, isEdit) => {
+      let id;
+      let version;
+      if(isEdit){
+          id = payload.versionId
+          version = {
+            ...payload
+          }
+      }else {
+         id = uuidv4();
+         version = {
+          ...payload,
+          versionId: id
+        }
+
       }
+
       addDocument(version, key, id);
 
       getVersions()

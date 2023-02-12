@@ -1,9 +1,9 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../../UI/button/button.component"
 import {ListContext} from '../../../context/list/list.component'
 
 import './list.styles.scss'
-import { ModalContext } from "../../../context/modal/modal.component";
+// import { ModalContext } from "../../../context/modal/modal.component";
 
 
 let count = 1;
@@ -26,8 +26,8 @@ const List = ({state, edit, contentType}) => {
             const curr = contents.find(content => {
                 for (const key in content) {
                     if(key === name) return true
-                }
-            })
+                } return false
+            }) 
 
             const presetListArea = async () => {
                await preSetList(curr)
@@ -56,12 +56,11 @@ const List = ({state, edit, contentType}) => {
 
     const preSetValues = async (curr) => {
         const listItems =  document.querySelectorAll(`.${name}-list-textarea`);
-        console.log(listItems.length)
         if(curr[name].length > 0) {
            Array.from(listItems).forEach((item, index) => {
                 if (index < curr[name].length) {
                     item.value = curr[name][index].content;
-                }
+                } return null
             })
         }
     }

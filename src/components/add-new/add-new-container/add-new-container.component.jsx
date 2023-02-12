@@ -28,7 +28,7 @@ const AddNewContainer = ({version, edit = false}) => {
    
     const {isOpen: modalIsOpen, openModal, closeModal, setModal} = modalCtx;
     const {setEditableFields} = formCtx;
-    const {addLists, contents} = listCtx;
+    const {addLists} = listCtx;
 
     useEffect(() => {
         if(edit && version) {
@@ -63,8 +63,13 @@ const AddNewContainer = ({version, edit = false}) => {
                 description,
                 contents: listCtx.contents
             }
+            if(isEdit) {
+                payload.versionId = version.versionId
+            }
           try {
-             versionCtx.addVersion(payload, userCtx.currentUser.uid)
+
+            versionCtx.addVersion(payload, userCtx.currentUser.uid, isEdit)
+
           
             setModal({successful: true, content: {versionNumber, title}})
             formCtx.clearFields();

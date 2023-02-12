@@ -1,8 +1,8 @@
-import { useReducer, createContext, useEffect } from "react";
+import { useReducer, createContext } from "react";
 import { createAction } from "../../utils/reducer/reducer.utils";
 
 const addItemToList = (list, item) => {
-  const { name, id, value } = item;
+  const {name, id, value } = item;
 
   const exisitingListItem = list.find((listItem) => listItem.id === item.id);
 
@@ -67,9 +67,16 @@ export const ListProvider = (props) => {
       const listName = listItem.name;
 
       const active = contents.filter(
-        (content) => listName == Object.keys(content)
-      );
-      const [currList] = active;
+        (content) => {
+          const [contentType] = Object.keys(content);
+         
+           if(listName === contentType){
+            return content
+           }
+        }
+        );
+        const [currList] = active;
+        
 
       const list = addItemToList(currList[listName], listItem);
       const payload = {

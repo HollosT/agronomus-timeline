@@ -22,7 +22,7 @@ const Home = () => {
     return (
         <section>
             {isLoading ? <Spinner />  : versions.map(version => (
-                <Timeline key={version.versionNumber} version={version} />
+                <Timeline key={version.versionId} version={version} />
             ))
             }
         </section>
