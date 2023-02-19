@@ -27,14 +27,16 @@ const AddNewContainer = ({version, edit = false}) => {
 
    
     const {isOpen: modalIsOpen, openModal, closeModal, setModal} = modalCtx;
-    const {setEditableFields} = formCtx;
+    const {setEditableFields, clearFields} = formCtx;
     const {addLists} = listCtx;
 
     useEffect(() => {
         if(edit && version) {
-            setIsEdit(edit)
-            setEditableFields(version)
-            addLists(version.contents)
+            setIsEdit(edit);
+            setEditableFields(version);
+            addLists(version.contents);
+        } else {
+            clearFields();
         }
 
     }, [])
@@ -87,7 +89,6 @@ const AddNewContainer = ({version, edit = false}) => {
     const updateModal = () => {
        closeModal()
     }
-
 
     const openVersions = () => {
         navigate('/')

@@ -40,6 +40,7 @@ export const VersionProvider = (props) => {
     const addVersion =  (payload, key, isEdit) => {
       let id;
       let version;
+
       if(isEdit){
           id = payload.versionId
           version = {

@@ -1,9 +1,11 @@
 import { useReducer, createContext } from "react";
 import { createAction } from "../../utils/reducer/reducer.utils";
 
-const addItemToList = (list, item) => {
-  const {name, id, value } = item;
 
+
+
+const addItemToList = (list, item) => {
+  const { id, value } = item;
   const exisitingListItem = list.find((listItem) => listItem.id === item.id);
 
   if (exisitingListItem) {
@@ -51,7 +53,8 @@ export const ListContext = createContext({
   addListItem: () => {},
   clearLists: () => {},
   getCurrentList: () => {},
-  addLists: () => {}
+  addLists: () => {},
+  removeListItem: () => {},
 });
 
 export const ListProvider = (props) => {
@@ -61,6 +64,7 @@ export const ListProvider = (props) => {
 
 
   const addListItem = (e) => {
+    console.log(contents)
     clearTimeout(timer);
     timer = setTimeout(() => {
       const listItem = e.target;
@@ -100,6 +104,10 @@ export const ListProvider = (props) => {
       return contents
   }
 
+  const removeListItem = (event) => {
+     
+  }
+
 
 
   return (
@@ -109,7 +117,8 @@ export const ListProvider = (props) => {
         addListItem: addListItem,
         clearLists,
         getCurrentList,
-        addLists
+        addLists,
+        removeListItem
       }}
     >
       {props.children}

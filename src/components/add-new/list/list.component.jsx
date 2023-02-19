@@ -3,7 +3,7 @@ import Button from "../../UI/button/button.component"
 import {ListContext} from '../../../context/list/list.component'
 
 import './list.styles.scss'
-// import { ModalContext } from "../../../context/modal/modal.component";
+
 
 
 let count = 1;
@@ -12,13 +12,12 @@ let defaultLists = [];
 
 const List = ({state, edit, contentType}) => {
     const [isEdit, setIsEdit] = useState(false)
-    // const modalCtx = useContext(ModalContext).modalContent;
     const listCtx = useContext(ListContext)
     const [lists, setLists] = useState(defaultLists)
     const name= state
 
 
-    const { contents} =listCtx
+    const { contents, removeListItem} =listCtx
     useEffect(() => {
         setIsEdit(edit)
         if(isEdit && contentType) {
@@ -60,15 +59,11 @@ const List = ({state, edit, contentType}) => {
            Array.from(listItems).forEach((item, index) => {
                 if (index < curr[name].length) {
                     item.value = curr[name][index].content;
+                    item.id = curr[name][index].id
                 } return null
             })
         }
     }
-    
-    // useEffect(() => {
-    //    const listItems =  document.querySelectorAll('.list-textarea');
-    //    listItems.forEach(item => item.value = '')
-    // }, [modalCtx])
 
     const addListItem = () => {
        const newItem = count;
@@ -79,9 +74,14 @@ const List = ({state, edit, contentType}) => {
     }
 
     const removeList = (event) => {
+        if(isEdit) {
+            removeListItem(event)
+        }
         setLists(prevList => {
             return prevList.filter(list => list !== +event.target.id)
         })
+
+
     }
 
 
@@ -93,7 +93,7 @@ const List = ({state, edit, contentType}) => {
             {lists.length > 0 ? lists.map(list => (
                 <div key={list} className="state-container">
                     <textarea  name={name} id={list} onChange={listCtx.addListItem} className={`list-textarea ${name}-list-textarea`} rows="2" cols="70"></textarea>
-                    <Button  type="button" onClick={removeList} id={list} buttonType="delete"> &times;</Button>
+                    <Button  type="button" onClick={removeList} id={list} buttonType="delete" data-name={name}> &times;</Button>
                 </div>
             )) : ''}
             <Button type="button" onClick={addListItem} buttonType="add">+</Button>
